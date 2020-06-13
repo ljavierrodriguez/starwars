@@ -12,7 +12,8 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			personajes: null
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
@@ -37,6 +38,12 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			getPersonajes: url => {
+				fetch(url)
+					.then(resp => resp.json())
+					.then(data => setStore({ personajes: data }))
+					.catch(error => console.log(error));
 			}
 		}
 	};
